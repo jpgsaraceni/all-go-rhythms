@@ -51,7 +51,3 @@ func merge(leftArr, rightArr []int) []int {
 
 	return output
 }
-
-func main() {
-	fmt.Println(MergeSort([]int{1, 6, 3, 4, 10, 0, 13}))
-}
