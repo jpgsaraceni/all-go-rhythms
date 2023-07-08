@@ -1,51 +1,49 @@
 package main
 
-import "fmt"
-
 // MergeSort is an implementation of the Merge Sort algorithm which
 // given an array of n length, recursively devides the array into sub-arrays,
 // sorts those sub-arrays, then merges the sorted sub-arrays.
 // It has a worst-case runtime of O(nlogn).
-func MergeSort(arr []int) []int {
-	length := len(arr)
+func MergeSort(sequence []int) []int {
+	size := len(sequence)
 
 	// base case
-	if length <= 1 {
-		return arr
+	if size <= 1 {
+		return sequence
 	}
 
-	leftArr := MergeSort(arr[0 : length/2])
-	rightArr := MergeSort(arr[length/2 : length])
+	leftSide := MergeSort(sequence[:size/2])
+	rightSide := MergeSort(sequence[size/2:])
 
-	output := merge(leftArr, rightArr)
+	output := merge(leftSide, rightSide)
 
 	return output
 }
 
-func merge(leftArr, rightArr []int) []int {
-	output := make([]int, len(leftArr)+len(rightArr))
+func merge(leftSide, rightSide []int) []int {
+	output := make([]int, len(leftSide)+len(rightSide))
 	var leftIndex, rightIndex int
 
 	for i := 0; i < len(output); i++ {
-		if leftIndex >= len(leftArr) {
-			output[i] = rightArr[rightIndex]
+		if leftIndex >= len(leftSide) { // means left side is over, so copy right side
+			output[i] = rightSide[rightIndex]
 			rightIndex++
 
 			continue
 		}
-		if rightIndex >= len(rightArr) {
-			output[i] = leftArr[leftIndex]
+		if rightIndex >= len(rightSide) { // means right side is over, so copy left side
+			output[i] = leftSide[leftIndex]
 			leftIndex++
 
 			continue
 		}
-		if leftArr[leftIndex] < rightArr[rightIndex] {
-			output[i] = leftArr[leftIndex]
+		if leftSide[leftIndex] < rightSide[rightIndex] {
+			output[i] = leftSide[leftIndex]
 			leftIndex++
 
 			continue
 		}
-		output[i] = rightArr[rightIndex]
+		output[i] = rightSide[rightIndex]
 		rightIndex++
 	}
 
