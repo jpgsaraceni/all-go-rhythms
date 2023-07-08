@@ -14,9 +14,14 @@ func TestMergeSort(t *testing.T) {
 		expect []int
 	}{
 		{
-			name:   "should sort array with 10 elements",
+			name:   "should sort array with even amount of elements",
 			input:  []int{1, 3, 10, 2, 4, 5, 9, 6, 8, 11},
 			expect: []int{1, 2, 3, 4, 5, 6, 8, 9, 10, 11},
+		},
+		{
+			name:   "should sort array with odd amount of elements",
+			input:  []int{1, 3, 10, 2, 4, 5, 9, 6, 11},
+			expect: []int{1, 2, 3, 4, 5, 6, 9, 10, 11},
 		},
 		{
 			name:   "should return same array when it is already sorted",
