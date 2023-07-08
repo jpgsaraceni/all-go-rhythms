@@ -1,7 +1,6 @@
 package main
 
 import (
-	"reflect"
 	"testing"
 )
 
@@ -36,10 +35,7 @@ func TestMergeSort(t *testing.T) {
 			t.Parallel()
 
 			got := MergeSort(test.input)
-			if !reflect.DeepEqual(test.expect, got) {
-				t.Logf("Test %s expected %v but got %v", test.name, test.expect, got)
-				t.Fail()
-			}
+			assertEqual(t, test.name, test.expect, got)
 		})
 	}
 }
